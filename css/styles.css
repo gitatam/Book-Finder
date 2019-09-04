@@ -28,3 +28,11 @@ body {
     line-height: 25px;
     border-radius: 4px;
 }
+
+
+/* Style the logo link */
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
