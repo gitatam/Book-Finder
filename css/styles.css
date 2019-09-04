@@ -73,3 +73,9 @@ body {
         float: none;
     }
 }
+
+.text {
+    color: red;
+    display: flex;
+    justify-content: center;
+}
