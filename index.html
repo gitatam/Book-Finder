@@ -2,51 +2,27 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title>Book Finder</title>
-  <meta name="description" content="Find some books using Google's Book API">
-  <meta name="keywords" content="books, API, coding, google">
-  <meta name="author" content="Book finder">
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-  <meta property="og:image" content="https://www.bookbusinessmag.com/thumb/?src=/wp-content/uploads/sites/4/2016/01/google-books-750x340.png&w=750&h=340">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="utf-8">
+    <title>Book Finder</title>
+    <meta name="description" content="Find some books using Google's Book API">
+    <meta name="keywords" content="books, API, coding, google">
+    <meta name="author" content="Book finder">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta property="og:image" content="https://www.bookbusinessmag.com/thumb/?src=/wp-content/uploads/sites/4/2016/01/google-books-750x340.png&w=750&h=340">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <!-- start search results cards -->
-  <section class="results">
-      <div id="result">
-        <div class="container">
-          <header class="jumbotron">
-            <div class="display-3 mb-2 mt-5" >Book Finder</div>
-            <h2 class="lead">Welcome to the Online Book Finder!</h2>
-            <p class="lead">Type in your search request and press the search icon.</p>
-            <p class="lead">Hopefully, you will find something nice. A popular search request is "Harry Potter"</p>
-          </header>
+    <div class="header">
+        <a href="#default" class="logo">CompanyLogo</a>
+        <div class="header-right">
+            <a class="active" href="#home">Home</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
         </div>
-      </div>
-  </section>
-  <!-- end search results cards -->
-
-<!-- start of local search -->
-<div class="container" style="padding:50px 250px;">
-     <h1>Live Search</h1>
-     <form role="form">
-       <div class="form-group">
-         <input type="input" class="form-control input-lg" id="txt-search" placeholder="Type your search character">
-       </div>
-     </form>
-     <div id="filter-records"></div>
-   </div>
-
-   <!-- end of local search -->
-
-
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="js/scripts.js"></script>
+    </div>
 </body>
 
 </html>
