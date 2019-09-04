@@ -1,4 +1,4 @@
-# Book-Search-Project
+# Book-Finder
 
 
 #### By ALVIN KARANJA, NELSON KIMANI, COLLINS LUCHELE, MATHEW GITATA, TED MUTWIRI.
