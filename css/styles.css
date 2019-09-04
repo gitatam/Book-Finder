@@ -107,3 +107,7 @@
             border-left: none;
             cursor: pointer;
         }
+        
+        form.example button:hover {
+            background: blue;
+        }
