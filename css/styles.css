@@ -111,3 +111,9 @@
         form.example button:hover {
             background: blue;
         }
+        
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
