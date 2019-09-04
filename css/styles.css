@@ -44,3 +44,11 @@ body {
     background-color: #ddd;
     color: black;
 }
+
+
+/* Style the active/current link*/
+
+.header a.active {
+    background-color: dodgerblue;
+    color: white;
+}
