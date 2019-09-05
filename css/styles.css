@@ -1,17 +1,13 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    font-weight: 10%;
-    background: url('../images/library\ 1.jpg');
+h1,
+h3 {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    color: #7fecff;
 }
-
-
-/* Style the header with a grey background and some padding */
 
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #092a41be;
     padding: 20px 10px;
 }
 
@@ -20,7 +16,7 @@ body {
 
 .header a {
     float: left;
-    color: black;
+    color: hsl(0, 29%, 95%);
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -44,9 +40,6 @@ body {
     background-color: #ddd;
     color: black;
 }
-
-
-/* Style the active/current link*/
 
 .header a.active {
     background-color: dodgerblue;
@@ -72,4 +65,22 @@ body {
     .header-right {
         float: none;
     }
+}
+
+.text {
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+.work {
+    color: whitesmoke;
+    font-family: 'Chilanka', cursive;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    color: whitesmoke;
 }
