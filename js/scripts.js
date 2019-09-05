@@ -41,6 +41,18 @@ async function asyncCall(query){
 
 // start function to make array of fetched books from the api
 function displayBooks(booksdata){
+  booksArray = booksdata.data.items;
+  let processedBooks = [];
+  for(let i=0; i<booksArray.length; i++){
+    if (booksArray[i].volumeInfo.authors == undefined) {
+      booksArray[i].volumeInfo.authors == ["#Missing Entry"]
+    }
+    if (booksArray[i].volumeInfo.publisher == undefined) {
+      booksArray[i].volumeInfo.publisher == ["#Missing Entry"]
+    }
+    const cardElement = ``
 
+    processedBooks.push(cardElement);
+  }
 }
 // start function to make array of fetched books from the api
