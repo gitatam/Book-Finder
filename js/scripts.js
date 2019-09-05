@@ -8,7 +8,7 @@ const displayArea = document.getElementById("result");
   searchButton.addEventListener("click", searchBook);
   document.addEventListener("keypress", function(searchEntry){
     if (event.keyCode == 13) {
-      console.log("You pressed enter key");
+      console.log("You searched by pressing the enter key");
       searchBook(searchEntry);
     }
   });
@@ -34,7 +34,7 @@ async function asyncCall(query){
     let booksdata = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}s&key=${apikey}`);
     displayBooks(booksdata);
   } catch (e) {
-    alert("Something went wrong. Please try again");
+    alert("The search result matches no books in our library.");
   }
 }
 // end function to make api calls to google api
@@ -50,9 +50,22 @@ function displayBooks(booksdata){
     if (booksArray[i].volumeInfo.publisher == undefined) {
       booksArray[i].volumeInfo.publisher == ["#Missing Entry"]
     }
-    const cardElement = ``
-
+    const cardElement = `
+    <div>
+        <div class="bookimage">
+          <img src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
+        </div>
+        <div>
+          <h3>${booksArray[i].volumeInfo.title}</h3>
+          <p>by ${booksArray[i].volumeInfo.authors[0]}</p>
+          <p>Published by: ${booksArray[i].volumeInfo.publisher}</p>
+          <a href="${booksArray[i].volumeInfo.previewLink}">View Details</a>
+        </div>
+      </div>
+    `
     processedBooks.push(cardElement);
   }
+  displayArea.innerHTML = "";
+  displayArea.innerHTML = processedBooks.join("");
 }
 // start function to make array of fetched books from the api
