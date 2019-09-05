@@ -28,7 +28,19 @@ function searchBook(searchEntry){
 // end function to validate user entry and initializa fetchingprocess
 
 // start function to make api calls to google api
-function asyncCall(query){
-
+async function asyncCall(query){
+  try {
+    // use axios open source js to make get request easy
+    let booksdata = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}s&key=${apikey}`);
+    displayBooks(booksdata);
+  } catch (e) {
+    alert("Something went wrong. Please try again");
+  }
 }
 // end function to make api calls to google api
+
+// start function to make array of fetched books from the api
+function displayBooks(booksdata){
+
+}
+// start function to make array of fetched books from the api
