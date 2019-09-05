@@ -34,7 +34,7 @@ async function asyncCall(query){
     let booksdata = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}s&key=${apikey}`);
     displayBooks(booksdata);
   } catch (e) {
-    alert("The search result matches no books in our library.");
+    alert("No such books in our library. Please try another search.");
   }
 }
 // end function to make api calls to google api
@@ -43,12 +43,12 @@ async function asyncCall(query){
 function displayBooks(booksdata){
   booksArray = booksdata.data.items;
   let processedBooks = [];
-  for(let i=0; i<booksArray.length; i++){
+  for(let i = 0; i < booksArray.length; i++){
     if (booksArray[i].volumeInfo.authors == undefined) {
-      booksArray[i].volumeInfo.authors == ["#Missing Entry"]
+      booksArray[i].volumeInfo.authors = ["#Missing Entry"]
     }
     if (booksArray[i].volumeInfo.publisher == undefined) {
-      booksArray[i].volumeInfo.publisher == ["#Missing Entry"]
+      booksArray[i].volumeInfo.publisher = ["#Missing Entry"]
     }
     const cardElement = `
     <div>
@@ -62,7 +62,7 @@ function displayBooks(booksdata){
           <a href="${booksArray[i].volumeInfo.previewLink}">View Details</a>
         </div>
       </div>
-    `
+    `;
     processedBooks.push(cardElement);
   }
   displayArea.innerHTML = "";
