@@ -45,19 +45,22 @@ function displayBooks(booksdata){
   let processedBooks = [];
   for(let i = 0; i < booksArray.length; i++){
     if (booksArray[i].volumeInfo.authors === undefined) {
-      booksArray[i].volumeInfo.authors = "#Missing Entry"
+      booksArray[i].volumeInfo.authors = "<i>* Missing Entry</i>"
     }
     if (booksArray[i].volumeInfo.publisher === undefined) {
-      booksArray[i].volumeInfo.publisher = "#Missing Entry"
+      booksArray[i].volumeInfo.publisher = "<i>N/A</i>"
+    }
+    if (booksArray[i].volumeInfo.description === undefined) {
+      booksArray[i].volumeInfo.description = "* <i>No description available for this book</i>"
     }
     const cardElement = `
-        <div class="card mb-10">
-          <img class="card-img-top" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
+        <div class="card mb-5 bg-dark  text-light border-info">
+          <img class="card-img-top img-fluid" style="height:100%" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
           <div class="card-body">
             <h3 class="card-title">${booksArray[i].volumeInfo.title}</h3>
-            <h5 class="subtitle">By ${booksArray[i].volumeInfo.authors[0]}</h5>
-            <h6 class="subtitle">Published by ${booksArray[i].volumeInfo.publisher}</h6>
-            <p class="card-text">${booksArray[i].volumeInfo.description}<br><br><span><a href="${booksArray[i].volumeInfo.previewLink}">More Details</a></span></p>
+            <h5 class="subtitle">By: ${booksArray[i].volumeInfo.authors[0]}</h5>
+            <h6 class="subtitle">Publisher: ${booksArray[i].volumeInfo.publisher},  ${booksArray[i].volumeInfo.publishedDate}</h6><br>
+            <p class="card-text">${booksArray[i].volumeInfo.description}<br><br><span><a class = "card-link text-light" href="${booksArray[i].volumeInfo.previewLink}">More Details</a></span></p>
           </div>
         </div>
     `;
