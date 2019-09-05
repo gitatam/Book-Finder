@@ -44,18 +44,19 @@ function displayBooks(booksdata){
   booksArray = booksdata.data.items;
   let processedBooks = [];
   for(let i = 0; i < booksArray.length; i++){
-    if (booksArray[i].volumeInfo.authors == undefined) {
-      booksArray[i].volumeInfo.authors = ["#Missing Entry"]
+    if (booksArray[i].volumeInfo.authors === undefined) {
+      booksArray[i].volumeInfo.authors = "#Missing Entry"
     }
-    if (booksArray[i].volumeInfo.publisher == undefined) {
-      booksArray[i].volumeInfo.publisher = ["#Missing Entry"]
+    if (booksArray[i].volumeInfo.publisher === undefined) {
+      booksArray[i].volumeInfo.publisher = "#Missing Entry"
     }
     const cardElement = `
         <div class="card mb-10">
           <img class="card-img-top" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
           <div class="card-body">
             <h3 class="card-title">${booksArray[i].volumeInfo.title}</h3>
-            <h5 class="subtitle">${booksArray[i].volumeInfo.authors[0]}</h5>
+            <h5 class="subtitle">By ${booksArray[i].volumeInfo.authors[0]}</h5>
+            <h6 class="subtitle">Published by ${booksArray[i].volumeInfo.publisher}</h6>
             <p class="card-text">${booksArray[i].volumeInfo.description}<br><br><span><a href="${booksArray[i].volumeInfo.previewLink}">More Details</a></span></p>
           </div>
         </div>
