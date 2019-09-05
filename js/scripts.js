@@ -1,66 +1,72 @@
-//constants for the api key, the search button and the input field where the user types
-const api_key = "AIzaSyDdkUJrGPPVWMRg-enDhs2Y_2xvkvQT6lI";
-const search_button = document.getElementById("search-button");
-const search_input = document.getElementById("search-input");
+// api, search button, display area constants
+const apikey = "AIzaSyDdkUJrGPPVWMRg-enDhs2Y_2xvkvQT6lI";
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
 const displayArea = document.getElementById("result");
 
-//event listeners for the search button and the enter press
-search_button.addEventListener("click", search);
-document.addEventListener("keypress", function (e) {
-  if (event.keyCode == 13) {
-    search(e);
-  }
-})
+// start of search button event listener
+  searchButton.addEventListener("click", searchBook);
+  document.addEventListener("keypress", function(searchEntry){
+    if (event.keyCode == 13) {
+      console.log("You searched by pressing the enter key");
+      searchBook(searchEntry);
+    }
+  });
+// end of search button event listener
 
-//saves the value of the search query, validates it and starts the fetch process
-function search(e) {
-  e.preventDefault();
-  if (search_input.value != "") {
-    const raw = search_input.value.toLowerCase();
-    const query = raw.replace(/\s/,"+");
+// start function to validate user entry and initializa fetchingprocess
+function searchBook(searchEntry){
+  searchEntry.preventDefault();
+  if(searchInput.value != ""){
+    const rawInput = searchInput.value.toLowerCase();
+    const query = rawInput.replace(/\s/,"+");
     asyncCall(query);
   } else {
-    alert("Please type in your search request")
+    alert("Please type a search to begin book find.");
   }
 }
+// end function to validate user entry and initializa fetchingprocess
 
-//makes the api call to google
-async function asyncCall(query) {
+// start function to make api calls to google api
+async function asyncCall(query){
   try {
-    //axios is a open source js file which makes get request very easy
-    let data = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}s&key=${api_key}`);
-    display(data); //loads in the data as cards into the dom
-  } catch (err) {
-    alert("Something went wrong. Please try again"); // If something goes wrong with the call, this is displayed
+    // use axios open source js to make get request easy
+    let booksdata = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}s&key=${apikey}`);
+    displayBooks(booksdata);
+  } catch (e) {
+    alert("No such books in our library. Please try another search.");
   }
 }
+// end function to make api calls to google api
 
-//makes an array of processed items to diplay for the api data
-function display(data) {
-  dataArray = data.data.items
-  let processedData = [];
-  for (let i = 0; i < dataArray.length; i++) {
-    if (dataArray[i].volumeInfo.authors == undefined) { dataArray[i].volumeInfo.authors = ["#Missing Entry#"]}
-    if (dataArray[i].volumeInfo.publisher == undefined) { dataArray[i].volumeInfo.publisher = "#Missing Entry#" }
-
-    const element = `
-      <div class="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-child-width-1-2@s" uk-grid>
-        <div class="uk-card-media-left uk-cover-container">
-          <img src="${dataArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${dataArray[i].volumeInfo.title} by ${dataArray[i].volumeInfo.authors[0]}" uk-cover>
-          <canvas width="600" height="400"></canvas>
-        </div>
-        <div>
-          <div class="uk-card-body">
-            <h3 class="uk-card-title">${dataArray[i].volumeInfo.title}</h3>
-            <p>Written by ${dataArray[i].volumeInfo.authors[0]}</p>
-            <p>Published by ${dataArray[i].volumeInfo.publisher}</p>
-            <a href="${dataArray[i].volumeInfo.previewLink}" class="uk-button uk-button-primary">Further Info</a>
+// start function to make array of fetched books from the api
+function displayBooks(booksdata){
+  booksArray = booksdata.data.items;
+  let processedBooks = [];
+  for(let i = 0; i < booksArray.length; i++){
+    if (booksArray[i].volumeInfo.authors === undefined) {
+      booksArray[i].volumeInfo.authors = "<i>* Missing Entry</i>"
+    }
+    if (booksArray[i].volumeInfo.publisher === undefined) {
+      booksArray[i].volumeInfo.publisher = "<i>N/A</i>"
+    }
+    if (booksArray[i].volumeInfo.description === undefined) {
+      booksArray[i].volumeInfo.description = "* <i>No description available for this book</i>"
+    }
+    const cardElement = `
+        <div class="media mb-5 p-5 bg-dark text-light">
+          <img class="d-flex align-self-top img-fluid w-25 mr-3" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
+          <div class="media-body">
+            <h3 class="card-title">${booksArray[i].volumeInfo.title}</h3>
+            <h5 class="subtitle">By: ${booksArray[i].volumeInfo.authors[0]}</h5>
+            <h6 class="subtitle">Publisher: ${booksArray[i].volumeInfo.publisher},  ${booksArray[i].volumeInfo.publishedDate}</h6><br>
+            <p class="card-text">${booksArray[i].volumeInfo.description}<br><br><span><a class = "card-link text-light" href="${booksArray[i].volumeInfo.previewLink}">More Details</a></span></p>
           </div>
         </div>
-      </div>
     `;
-    processedData.push(element);
+    processedBooks.push(cardElement);
   }
-  displayArea.innerHTML = ""; //deletes the old search results
-  displayArea.innerHTML = processedData.join("");
+  displayArea.innerHTML = "";
+  displayArea.innerHTML = processedBooks.join("");
 }
+// start function to make array of fetched books from the api
