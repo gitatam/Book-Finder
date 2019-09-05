@@ -54,9 +54,9 @@ function displayBooks(booksdata){
       booksArray[i].volumeInfo.description = "* <i>No description available for this book</i>"
     }
     const cardElement = `
-        <div class="card mb-5 bg-dark  text-light border-info">
-          <img class="card-img-top img-fluid" style="height:100%" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
-          <div class="card-body">
+        <div class="media mb-5 p-5 bg-dark text-light">
+          <img class="d-flex align-self-top img-fluid w-25 mr-3" src="${booksArray[i].volumeInfo.imageLinks.thumbnail}" alt="The image to ${booksArray[i].volumeInfo.title} by ${booksArray[i].volumeInfo.authors[0]}">
+          <div class="media-body">
             <h3 class="card-title">${booksArray[i].volumeInfo.title}</h3>
             <h5 class="subtitle">By: ${booksArray[i].volumeInfo.authors[0]}</h5>
             <h6 class="subtitle">Publisher: ${booksArray[i].volumeInfo.publisher},  ${booksArray[i].volumeInfo.publishedDate}</h6><br>
